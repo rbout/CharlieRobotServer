@@ -17,10 +17,6 @@ const assistant = new AssistantV2({
   serviceUrl: process.env.URL,
 });
 
-app.get('/', (request, response) => {
-  response.status(200).send('Hello World')
-})
-
 // Endpoint that will connect to IBM Watson
 // Request will have the text of what the person said and will respond with charlie's response
 // TODO strong params middleware maybe and have a better solution with the session id
@@ -59,6 +55,10 @@ app.post('/talk', (request, response) => {
   } else {
     response.sendStatus(400)
   }
+})
+
+app.get('/', (request, response) => {
+  response.status(200).send('Hello World')
 })
 
 app.listen(port, () => console.log(`Server up at http://localhost:${port}`))
