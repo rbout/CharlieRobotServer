@@ -1,2 +1,2 @@
 # CharlieRobotServer
- Start server with `node src/index.js`
+ Start server with `npm start`
