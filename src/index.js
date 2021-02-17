@@ -1,30 +1,30 @@
 const express = require('express')
-//const AssistantV2 = require('ibm-watson/assistant/v2');
-//const { IamAuthenticator } = require('ibm-watson/auth');
-//const cors = require('cors')
+const AssistantV2 = require('ibm-watson/assistant/v2');
+const { IamAuthenticator } = require('ibm-watson/auth');
+const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 8000
 
-//require('dotenv').config()
-//app.use(express.json())
-//app.use(cors({origin: true}))
+app.use(express.json())
+app.use(cors({origin: true}))
 
-/*const assistant = new AssistantV2({
+// This is really bad to have the API key hard coded but heroku doesn't like the .env file
+const assistant = new AssistantV2({
   version: '2020-09-24',
   authenticator: new IamAuthenticator({
-    apikey: process.env.API,
+    apikey: "FrNpdElTfzGOub27aGMx44fAnmxdW_7WBdpZgS8qnTk1",
   }),
-  serviceUrl: process.env.URL,
+  serviceUrl: "https://api.us-south.assistant.watson.cloud.ibm.com/instances/40539ed3-c9d7-4f58-a65b-730d16aa2ef4",
 });
 
 // Endpoint that will connect to IBM Watson
 // Request will have the text of what the person said and will respond with charlie's response
 // TODO strong params middleware maybe and have a better solution with the session id
-/*pp.post('/talk', (request, response) => {
+app.post('/talk', (request, response) => {
   let session = ''
   if(request.body.session === undefined) {
     // Session is needed to message IBM Watson
-    assistant.createSession({assistantId: process.env.ASSISTANTID})
+    assistant.createSession({assistantId: "ee080c9a-51ec-4186-b777-afd2d568ac77"})
       .then((sessionRespone) => {
 
         session = sessionRespone.result.session_id
@@ -33,7 +33,7 @@ const port = process.env.PORT || 8000
 
           // Message is sent with sesssion id
           assistant.message({
-            assistantId: process.env.ASSISTANTID,
+            assistantId: "ee080c9a-51ec-4186-b777-afd2d568ac77",
             sessionId: session,
             input: {
               message_type: 'text',
@@ -55,7 +55,7 @@ const port = process.env.PORT || 8000
   } else {
     response.sendStatus(400)
   }
-})*/
+})
 
 app.get('/', (request, response) => {
   response.status(200).send('Hello World')
