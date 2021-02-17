@@ -2,10 +2,10 @@ const express = require('express')
 const AssistantV2 = require('ibm-watson/assistant/v2');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const cors = require('cors')
-require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 8000
 
+require('dotenv').config()
 app.use(express.json())
 app.use(cors({origin: true}))
 
