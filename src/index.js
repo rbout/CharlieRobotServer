@@ -2,6 +2,8 @@ const express = require('express')
 const AssistantV2 = require('ibm-watson/assistant/v2');
 const { IamAuthenticator } = require('ibm-watson/auth');
 const cors = require('cors')
+// Uncomment when working on the server locally
+// require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 8000
 
