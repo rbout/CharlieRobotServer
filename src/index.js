@@ -1,15 +1,15 @@
 const express = require('express')
-const AssistantV2 = require('ibm-watson/assistant/v2');
-const { IamAuthenticator } = require('ibm-watson/auth');
-const cors = require('cors')
+//const AssistantV2 = require('ibm-watson/assistant/v2');
+//const { IamAuthenticator } = require('ibm-watson/auth');
+//const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 8000
 
-require('dotenv').config()
-app.use(express.json())
-app.use(cors({origin: true}))
+//require('dotenv').config()
+//app.use(express.json())
+//app.use(cors({origin: true}))
 
-const assistant = new AssistantV2({
+/*const assistant = new AssistantV2({
   version: '2020-09-24',
   authenticator: new IamAuthenticator({
     apikey: process.env.API,
@@ -20,7 +20,7 @@ const assistant = new AssistantV2({
 // Endpoint that will connect to IBM Watson
 // Request will have the text of what the person said and will respond with charlie's response
 // TODO strong params middleware maybe and have a better solution with the session id
-app.post('/talk', (request, response) => {
+/*pp.post('/talk', (request, response) => {
   let session = ''
   if(request.body.session === undefined) {
     // Session is needed to message IBM Watson
@@ -55,7 +55,7 @@ app.post('/talk', (request, response) => {
   } else {
     response.sendStatus(400)
   }
-})
+})*/
 
 app.get('/', (request, response) => {
   response.status(200).send('Hello World')
