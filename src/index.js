@@ -8,13 +8,12 @@ const port = process.env.PORT || 8000
 app.use(express.json())
 app.use(cors({origin: true}))
 
-// This is really bad to have the API key hard coded but heroku doesn't like the .env file
 const assistant = new AssistantV2({
   version: '2020-09-24',
   authenticator: new IamAuthenticator({
-    apikey: "FrNpdElTfzGOub27aGMx44fAnmxdW_7WBdpZgS8qnTk1",
+    apikey: process.env.API,
   }),
-  serviceUrl: "https://api.us-south.assistant.watson.cloud.ibm.com/instances/40539ed3-c9d7-4f58-a65b-730d16aa2ef4",
+  serviceUrl: process.env.URL,
 });
 
 // Endpoint that will connect to IBM Watson
@@ -24,7 +23,7 @@ app.post('/talk', (request, response) => {
   let session = ''
   if(request.body.session === undefined) {
     // Session is needed to message IBM Watson
-    assistant.createSession({assistantId: "ee080c9a-51ec-4186-b777-afd2d568ac77"})
+    assistant.createSession({assistantId: process.env.ASSISTANTID})
       .then((sessionRespone) => {
 
         session = sessionRespone.result.session_id
@@ -33,7 +32,7 @@ app.post('/talk', (request, response) => {
 
           // Message is sent with sesssion id
           assistant.message({
-            assistantId: "ee080c9a-51ec-4186-b777-afd2d568ac77",
+            assistantId: process.env.ASSISTANTID,
             sessionId: session,
             input: {
               message_type: 'text',
